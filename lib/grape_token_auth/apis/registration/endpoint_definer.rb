@@ -9,7 +9,7 @@ module GrapeTokenAuth
       end
 
       def self.define_post(api)
-        api.post '/' do
+        api.post '/registration' do
           return present empty_params_error if empty_params_error
           return present invalid_redirect_error if invalid_redirect_error
           present_create(params, api.resource_scope)
@@ -17,7 +17,7 @@ module GrapeTokenAuth
       end
 
       def self.define_delete(api)
-        api.delete do
+        api.delete '/registration' do
           user = find_resource(env, api.resource_scope)
           return present bad_request(['resource not found.'], 404) unless user
           user.delete
@@ -26,7 +26,7 @@ module GrapeTokenAuth
       end
 
       def self.define_put(api)
-        api.put do
+        api.put '/registration' do
           return present empty_params_error if empty_params_error
           resource = find_resource(env, api.resource_scope)
           return present no_resource unless resource
