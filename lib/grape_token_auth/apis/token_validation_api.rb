@@ -2,7 +2,6 @@
 module GrapeTokenAuth
   # Contains the major functionality of TokenValidation
   module TokenValidationAPICore
-    desc 'トークンの有効チェック'
     def self.included(base)
       base.get '/validate_token' do
         token_authorizer = TokenAuthorizer.new(AuthorizerData.from_env(env))
